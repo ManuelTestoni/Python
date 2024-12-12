@@ -1,0 +1,1 @@
+Progetto(nome='Corso_Sicurezza', inizio=2024-12-20, fine=2025-01-20)
