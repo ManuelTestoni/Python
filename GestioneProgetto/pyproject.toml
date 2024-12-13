@@ -1,0 +1,16 @@
+# pyproject.toml
+
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GestioneProgetti"
+version = "0.1.0"
+description = "Software per creazione di progetti e attività correlate per aziende."
+authors = [
+    { name = "Manuel Testoni", email = "manueltestoni03@gmail.com" }
+]

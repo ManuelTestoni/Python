@@ -1,0 +1,13 @@
+# pyproject.toml
+
+
+[project]
+name = "Animali"
+version = "0.1.0"
+description = "Questo progetto permette di creare un qualunque tipo di animale in python."
+authors = [
+    { name = "Manuel Testoni", email = "manueltestoni03@gmail.com" }
+]
+dependencies = [
+    "random"
+]
