@@ -1,0 +1,2 @@
+Arance,Frutta,10
+Mandarino ,Frutta,10

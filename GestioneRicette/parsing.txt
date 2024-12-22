@@ -1,0 +1,1 @@
+Mascarpone, Facile, {'Burro': 10, 'Panna': 2}, Semplicemente il mascarpone 

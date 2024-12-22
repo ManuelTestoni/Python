@@ -1,13 +1,19 @@
+#import dei vari moduli
 from datetime import datetime
 import pickle
 
 import Progetto
 import Attivita
+import argparse
 
 
+#lista che tiene in memoria ipotetici utenti per il programma
 utenti = ["Manuel", "Professore"]
+#dizionario per vedere quali utenti ha quali progetti
 progetti_utente = {}
+#stati possibili per le attività
 stati_attività = ["Da fare", "In corso", "Completata"]
+#creazione di un progetto prova con un attività
 progetto = Progetto.Progetto("prova", 2024-12-20, 2025-3-20)
 att = Attivita.Attivita("nome", 2024-12-25, "Da fare")
 progetto.addActivity(att)
@@ -17,8 +23,37 @@ prOggetti.append(progetto)
 attivita = []
 attivita.append(att)
 
-def main():
+#prendiamo in input i vari argomenti
+parser = argparse.ArgumentParser(description='Esportazione progetto')
+parser.add_argument(dest='Nome', metavar='String', type=str, nargs='?', help='Nome Utente')
+parser.add_argument(dest='NomeProgetto', metavar='String', type=str, nargs='?', help='Progetto')
+parser.add_argument(dest='DataProgettoInizio', metavar='String', type=str, nargs='?', help='Progetto Data Inizio')
+parser.add_argument(dest='DataProgettoFine', metavar='String', type=str, nargs='?', help='Progetto Data Fine')
+parser.add_argument(dest='PercorsoFile', metavar='String', type=str, nargs='?', help='PercorsoFile')
+args = parser.parse_args()
 
+prog = Progetto.Progetto(args.NomeProgetto, args.DataProgettoInizio, args.DataProgettoFine)
+prOggetti.append(prog)
+
+#scriviamo su file gli argomenti salvati
+with open(args.PercorsoFile, 'w') as f:
+    f.write(args.Nome)
+    f.write(' ')
+    f.write(args.NomeProgetto)
+    f.write(' ')
+    f.write(args.DataProgettoInizio)
+    f.write(' ')
+    f.write(args.DataProgettoFine)
+
+print("Progetto eportato correttamente sul file " + args.PercorsoFile)
+
+#controlliamo di aver scritto tutto correttamente
+with open (args.PercorsoFile, 'r') as f:
+    content = f.read()
+    print(content)
+
+#funzione principale
+def main():
 
     auth = False
     while(auth != True):
@@ -113,8 +148,8 @@ def main():
                 print("di quale attività vuoi modificare lo stato?")
                 cont = 0
                 for i in attivita:
-                    print("{cont} : "+ i.getNome())
-                scelta_attivita = int(input)
+                    print("{cont} : " + i.getNome())
+                scelta_attivita = int(input())
                 attivita[scelta_attivita-1].modState(stato)
         elif scelta == 5:
             with open("Progetti.txt", 'wb') as file_write:
@@ -147,12 +182,9 @@ def main():
         else:
             print("Scegi un opzione disponible")
 
-
-
-
     return
 
-
+#funzione per la creazione di un nuovo progetto
 def newProject(scelta_utente):
     print("Inserisci il nome, la data di inizio e la data di scadenza")
     nome = input()
@@ -168,7 +200,7 @@ def newProject(scelta_utente):
     progetti_utente.update({scelta_utente: prog})
     return prog
 
-
+#funzione per la crazione di una nuova attività per un progetto
 def newActivity(progetto):
     inserimento = False
     while inserimento != True:
@@ -192,9 +224,12 @@ def newActivity(progetto):
             inserimento = True
 
     return 0
-
+#funzione che stampa le attività di un determinato progetto
 def printAct(progetto):
     print(progetto.getActivity())
+
+#facciamo in modo che questo file venga eseguito solo se lanciato come
+#script piuttosto che se importato
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 import ClasseCane
-import ClasseGatto
-import ClasseAnimale
+
 import unittest
 
 class AnimaleTest(unittest.TestCase):

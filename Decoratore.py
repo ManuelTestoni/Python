@@ -18,3 +18,5 @@ def time_function(function):
 def somma(*args, **kwargs):
     return sum(args)
 
+s = time_function(somma)
+print(s)
